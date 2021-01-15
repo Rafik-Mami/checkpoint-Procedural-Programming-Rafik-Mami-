@@ -1,0 +1,85 @@
+
+
+ //PROCEDURE TO CALCULATE SCALAIRE PRODUCT 
+
+ PROCEDURE dot_product( VAR V1:ARRAY_OF_FLOAT, VAR V1:ARRAY_OF_FLOAT ,VAR  PS:FLOAT)//pass by reference
+ VAR
+
+i:INTEGER;
+ps:FLOAT;
+ BEGIN
+FOR i FROM 0 TO 2 STEP 1 DO
+PS:=PS+(V1[i]*V2[i]);
+Write(PS);
+ END FOR
+ END
+
+ //USING PROCEDURE IN THE PRINCIPALE PROGRAMM
+ ALGORITHM orthogonal()
+ VAR
+i,j,n:INTEGER;
+V1,V2: ARRAY_OF FLOAT[3];
+PS:FLOAT
+BEGIN
+REPEAT 
+Read(n);
+UNTIL (n<0)
+
+FOR i FROM 1 TO n STEP 1 DO
+FOR j FROM 0 TO 2 STEP 1 DO
+read(V1[j]);
+read(V2[j]);
+END_FOR
+
+dot_product(V1,V2,PS);
+IF (PS==0)
+    THEN
+     Write("the "+ i +" pairs of vectors are orthogonal")
+    ELSE
+    Write("the "+ i +" pairs of vectors are NOT orthogonal")
+END_IF
+
+END_FOR
+ 
+END
+//FUNCTION TO CALCULATE SCALAIRE PRODUCT 
+FUNCTION dot_product(V1:ARRAY_OF_FLOAT ,V2:ARRAY_OF_FLOAT):FLOAT//pass by value
+VAR
+
+i:INTEGER;
+PS:FLOAT;
+ BEGIN
+FOR i FROM 0 TO 2 STEP 1 DO
+PS:=PS+(V1[i]*V2[i]);
+ END FOR
+ RETURN PS;
+ END
+ //USING FUNCTION IN THE PRINCIPALE PROGRAMM
+
+ ALGORITHM orthogonal()
+ VAR
+i,j,n:INTEGER;
+PS:FLOAT;
+V1,V2: ARRAY_OF FLOAT[3];
+BEGIN
+REPEAT 
+Read(n);
+UNTIL (n<0)
+
+FOR i FROM 1 TO n STEP 1 DO
+FOR j FROM 0 TO 2 STEP 1 DO
+read(v1[j]);
+read(v2[j]);
+END_FOR
+PS:=dot_product(V1,v2);
+IF (PS==0)
+    THEN
+    Write("the "+ i +" pairs of vectors are orthogonal")
+    ELSE
+    Write("the "+ i +" pairs of vectors are NOT orthogonal")
+END_IF
+
+END_FOR
+
+
+END
